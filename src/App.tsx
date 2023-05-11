@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import {CardSuits, CardValues, ICard} from "./types/card";
 
-function App() {
+import './App.css'
+import {Hand} from "./ui/Hand/Hand";
+import {createStack} from "./lib/createStack";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "./redux/store";
+import {init} from "./redux/slices/gameSlice";
+
+const App = () => {
+    const dispatch = useDispatch()
+    const state = useSelector((state: RootState)=>state.game)
+
+
+    useEffect(()=>{
+        dispatch(init())
+    }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className={'table'}>
+        <div className={'row'}>
+          <Hand cards={state.player}/>
+        </div>
+      </div>
   );
-}
+};
 
-export default App;
+export default App

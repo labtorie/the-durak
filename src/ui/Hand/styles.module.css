@@ -1,0 +1,37 @@
+.container {
+    position: fixed;
+    bottom: calc(-0.3 * var(--card-height));
+    right: 0;
+    left: 0;
+    padding-right: var(--card-width);
+    display: flex;
+    justify-content: center;
+}
+
+.row {
+    height: var(--card-height);
+    min-width: var(--card-width);
+    display: flex;
+    width: 80%;
+}
+
+.cardHolder {
+    flex: 1;
+    position: relative;
+    transition-duration: .2s;
+    cursor: pointer;
+}
+
+.cardHolder:hover {
+    transform: scale(1.02) translateY(-20px);
+}
+
+.selected {
+    transform: translateY(-60px) !important;
+}
+
+.cardHolder:hover + .cardHolder {
+    transform: translateX(10px) rotate(2deg);
+}
+
+
